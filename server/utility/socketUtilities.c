@@ -65,11 +65,12 @@ int acceptTCPConnection(int servSock) {
     int clientSock = accept(servSock, (struct sockaddr*) &clientAddr, &clientAddrLen);
 
     if(clientSock < 0)
-        exitWithSystemMessage("accept() failed");
+        return -1;
     
     fputs("Handling client: ", stdout);
     printSocketAddress((struct sockaddr*)&clientAddr, stdout);
     fputc('\n', stdout);
+    fprintf(stdout, "Client Socket ID: %d", clientSock);    
 
     return clientSock;
 
