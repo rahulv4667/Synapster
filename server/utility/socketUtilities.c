@@ -78,33 +78,3 @@ int acceptTCPConnection(int servSock) {
 
 
 
-//Echo handling
-//TODO: change this
-void handleTCPClient(int clientSock) {
-
-    char buffer[BUFSIZE];
-
-    ssize_t numBytesRecvd = recv(clientSock, buffer, BUFSIZE, 0);
-
-    if(numBytesRecvd < 0)
-        exitWithSystemMessage("recv() failed");
-    
-    while(numBytesRecvd > 0) {
-
-        ssize_t numBytesSent = send(clientSock, buffer, numBytesRecvd, 0);
-
-        if(numBytesSent < 0)
-            exitWithSystemMessage("send() failed");
-        else if(numBytesSent != numBytesRecvd)
-            exitWithUserMessage("send()", "sent unexpected number of bytes");
-        
-        numBytesRecvd = recv(clientSock, buffer, BUFSIZE, 0);
-
-        if(numBytesRecvd < 0)
-            exitWithSystemMessage("recv() failed");
-
-    }
-
-    close(clientSock);
-
-}

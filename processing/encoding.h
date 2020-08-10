@@ -27,3 +27,11 @@ bool decodeGetResponse(uint8_t *inBuf, const size_t bufSize, GetResponse *res);
 
 bool decodeQuitRequest(uint8_t *inBuf, const size_t bufSize, QuitRequest *req);
 bool decodeQuitResponse(uint8_t *inBuf, const size_t bufSize, QuitResponse *res);
+
+
+//function pointers
+// typedef size_t (*requestDecoder)(const void*, uint8_t*);
+// typedef bool (*responseDecoder)(uint8_t*, const size_t, void*);
+
+// typedef size_t (*requestEncoder)(const void*, uint8_t*);
+// typedef bool (*responseEncdoer)(uint8_t*, const size_t, void*);

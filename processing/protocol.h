@@ -2,18 +2,19 @@
 #include <stdint.h>
 
 static const char *MAGIC = "Sharing";
-static uint8_t MAGIC_BIN = 42;
-static uint8_t SEARCH_REQUEST = 1;
-static uint8_t SEARCH_RESPONSE = 11;
-static uint8_t GET_REQUEST = 2;
-static uint8_t GET_RESPONSE = 22;
-static uint8_t JOIN_REQUEST = 3;
-static uint8_t JOIN_RESPONSE = 33;
-static uint8_t QUIT_REQUEST = 4;
-static uint8_t QUIT_RESPONSE = 44;
-static uint64_t MAX_FILE_SIZE = (1<<50) - 1;        //2^50 - 1
-static uint64_t MAX_MESSAGE_SIZE = (1<<63) - 1;     //2^63 - 1
-static uint32_t MAX_LINE = 4096;
+static const uint8_t MAGIC_BIN = 42;
+static const uint8_t SEARCH_REQUEST = 1;
+static const uint8_t SEARCH_RESPONSE = 2;
+static const uint8_t GET_REQUEST = 3;
+static const uint8_t GET_RESPONSE = 4;
+static const uint8_t JOIN_REQUEST = 5;
+static const uint8_t JOIN_RESPONSE = 6;
+static const uint8_t QUIT_REQUEST = 7;
+static const uint8_t QUIT_RESPONSE = 8;
+static const size_t MAX_MESSAGE_SIZE = (1<<25) - 1;     //2^54 - 1
+static const uint32_t MAX_WIRE_SIZE = (1<<25) - 1;
+static const uint32_t MAX_FRAME_SIZE = (1<<31) - 1;
+static const uint32_t MAX_LINE = 4096;
 
 struct JoinRequest {
     //encoded as string
@@ -66,6 +67,16 @@ struct QuitResponse {
     unsigned long recordsDeletedCount;
 };
 
+
+// struct RequestHandle {
+//     size_t (*requestCoder)(const void* reqStruct, uint8_t* buf);
+//     const void* requestStructure;
+// };
+
+// struct ResponseHandle {
+//     bool (*responseCoder)(uint8_t* buf, const size_t msgSize, void* resStruct);
+//     const void* responseStructure;
+// };
 
 typedef struct JoinRequest JoinRequest;
 typedef struct JoinResponse JoinResponse;
