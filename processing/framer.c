@@ -54,13 +54,13 @@ int getNextMessage(FILE *in, uint8_t *buf, size_t bufSize, uint8_t *type) {
 
 
 
-int putMessage(uint8_t buf[], size_t msgSize, uint8_t *type, FILE *out) {
+int putMessage(uint8_t buf[], size_t msgSize, uint8_t type, FILE *out) {
 
-    if(msgSize > UINT32_MAX) return -1;
+    if(msgSize > MAX_MESSAGE_SIZE) return -1;
     uint32_t payloadSize = htonl(msgSize);
 
     if((fwrite(&payloadSize, sizeof(uint32_t), 1, out)) != 1
-        || (fwrite(type, sizeof(uint8_t), 1, out) != 1)
+        || (fwrite(&type, sizeof(uint8_t), 1, out) != 1)
         || (fwrite(buf, sizeof(uint8_t), msgSize, out) != msgSize))
         return -1;
     

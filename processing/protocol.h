@@ -11,10 +11,14 @@ static const uint8_t JOIN_REQUEST = 5;
 static const uint8_t JOIN_RESPONSE = 6;
 static const uint8_t QUIT_REQUEST = 7;
 static const uint8_t QUIT_RESPONSE = 8;
+static const unsigned long STATUS_SUCCESS = 14;
+static const unsigned long STATUS_FAILURE = 21;
+static const unsigned long STATUS_UNKNOWN = 35;
 static const size_t MAX_MESSAGE_SIZE = (1<<25) - 1;     //2^54 - 1
 static const uint32_t MAX_WIRE_SIZE = (1<<25) - 1;
 static const uint32_t MAX_FRAME_SIZE = (1<<31) - 1;
 static const uint32_t MAX_LINE = 4096;
+
 
 struct JoinRequest {
     //encoded as string
@@ -38,10 +42,10 @@ struct SearchResponse {
 };
 
 struct KeywordMatch {
-    char *keyword;
-    char *filename;
-    char *host;
-    char *service;
+    const char *keyword;
+    const char *filename;
+    const char *host;
+    const char *service;
 };
 
 struct GetRequest {

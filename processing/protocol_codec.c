@@ -362,7 +362,7 @@ size_t encodeSearchResponse(const SearchResponse *res, uint8_t *outBuf) {
                 keyMatch.host,
                 keyMatch.service);
 
-        bufPtr += writtenBytes; //to remove null character at the end
+        bufPtr += writtenBytes; 
         size -= writtenBytes;
 
     }
