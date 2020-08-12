@@ -352,7 +352,7 @@ int handleQuitRequest(QuitRequest *req, FILE *sockStream, int clientSock) {
 
         for(int i = 0; i < fileVec.size(); i++) {
 
-            
+                        
 
         }
         
